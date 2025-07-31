@@ -3,6 +3,7 @@ import SEO from '../components/SEO';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { useTherapists } from '../hooks/useTherapists';
+import { MapPin, Loader2 } from 'lucide-react';
 
 export default function TherapistListPage() {
   const { data: therapists = [], isLoading, error } = useTherapists();
@@ -53,7 +54,7 @@ export default function TherapistListPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {isLoading ? (
             <div className="text-center py-12">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-therapy-600 mx-auto"></div>
+              <Loader2 className="w-12 h-12 text-therapy-600 mx-auto" />
               <p className="mt-4 text-gray-600">Ładowanie terapeutów...</p>
             </div>
           ) : error ? (
@@ -107,8 +108,8 @@ export default function TherapistListPage() {
                       )}
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-500">
-                        <i className="fas fa-map-marker-alt mr-2"></i>
+                      <span className="text-gray-500 flex items-center">
+                        <MapPin className="w-4 h-4 mr-2" />
                         {therapist.location?.city || 'Warszawa'}
                       </span>
                       <span className="text-therapy-600 font-semibold">

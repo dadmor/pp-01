@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import { Award, Video, Shield } from 'lucide-react';
 
 export default function HomePage() {
   return (
@@ -16,14 +17,14 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-cream to-therapy-50">
         <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-gray-900 mb-8 animate-fade-in-up">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-gray-900 mb-8">
             Znajdź swojego <span className="text-therapy-600">terapeutę</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto animate-fade-in-up animation-delay-200">
+          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto">
             Połączymy Cię z wykwalifikowanymi psychoterapeutami, 
             którzy pomogą Ci w drodze do lepszego samopoczucia
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-up animation-delay-400">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link to="/terapeuci" className="btn-primary text-lg px-8 py-4">
               Przeglądaj terapeutów
             </Link>
@@ -43,7 +44,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-20 h-20 bg-therapy-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <i className="fas fa-certificate text-3xl text-therapy-600"></i>
+                <Award className="w-10 h-10 text-therapy-600" />
               </div>
               <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4">
                 Certyfikowani specjaliści
@@ -54,7 +55,7 @@ export default function HomePage() {
             </div>
             <div className="text-center">
               <div className="w-20 h-20 bg-therapy-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <i className="fas fa-video text-3xl text-therapy-600"></i>
+                <Video className="w-10 h-10 text-therapy-600" />
               </div>
               <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4">
                 Terapia online
@@ -65,7 +66,7 @@ export default function HomePage() {
             </div>
             <div className="text-center">
               <div className="w-20 h-20 bg-therapy-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <i className="fas fa-shield-alt text-3xl text-therapy-600"></i>
+                <Shield className="w-10 h-10 text-therapy-600" />
               </div>
               <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4">
                 Bezpieczeństwo

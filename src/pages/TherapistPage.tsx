@@ -12,6 +12,7 @@ import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 import { getTherapistBySlug } from '../lib/supabase';
 import { getPreRenderedTherapist } from '../lib/window-data';
+import { Loader2 } from 'lucide-react';
 
 
 export default function TherapistPage() {
@@ -31,7 +32,7 @@ export default function TherapistPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-therapy-600 mx-auto"></div>
+          <Loader2 className="w-12 h-12 text-therapy-600 mx-auto" />
           <p className="mt-4 text-gray-600">Ładowanie...</p>
         </div>
       </div>
