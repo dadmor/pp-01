@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profesjonalna Psychoterapia</title>
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Additional styles for animations -->
+    <style>
+      /* Animation keyframes */
+      @keyframes fade-in-up {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      
+      /* Animation classes */
+      .animate-fade-in-up {
+        animation: fade-in-up 0.8s ease-out;
+      }
+      
+      .animate-fade-in {
+        animation: fade-in 1s ease-out;
+      }
+      
+      .animation-delay-200 {
+        animation-delay: 0.2s;
+        animation-fill-mode: both;
+      }
+      
+      .animation-delay-400 {
+        animation-delay: 0.4s;
+        animation-fill-mode: both;
+      }
+      
+      .animation-delay-600 {
+        animation-delay: 0.6s;
+        animation-fill-mode: both;
+      }
+      
+      .animation-delay-800 {
+        animation-delay: 0.8s;
+        animation-fill-mode: both;
+      }
+      
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: #87A96B;
+        border-radius: 5px;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: #6B8B55;
+      }
+      
+      /* Line clamp utility */
+      .line-clamp-3 {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+      }
+      
+      /* Navigation link styles */
+      .nav-link {
+        position: relative;
+        color: #6B6B6B;
+        font-weight: 400;
+        font-size: 0.95rem;
+        letter-spacing: 0.5px;
+        transition: color 0.3s ease;
+      }
+      
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: #87A96B;
+        transition: width 0.3s ease;
+      }
+      
+      .nav-link:hover {
+        color: #2C2C2C;
+      }
+      
+      .nav-link:hover::after {
+        width: 100%;
+      }
+      
+      /* Smooth scroll behavior */
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

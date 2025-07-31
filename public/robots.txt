@@ -1,0 +1,55 @@
+# Robots.txt dla profesjonalna-psychoterapia.pl
+# Pozwalamy wszystkim botom na indeksowanie
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_app/
+Disallow: /cdn-cgi/
+
+# Sitemap
+Sitemap: https://profesjonalna-psychoterapia.pl/sitemap.xml
+
+# Crawl-delay dla mniejszych botów
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: DotBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 20
+
+# Blokujemy złe boty
+User-agent: PetalBot
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Google Images
+User-agent: Googlebot-Image
+Allow: /
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.png
+Allow: *.webp
+
+# Przyśpieszamy indeksowanie ważnych sekcji
+User-agent: *
+Allow: /terapeuta/*
+Allow: /terapeuci
+Allow: /kontakt
+Allow: /o-nas

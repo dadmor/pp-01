@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/* Twoja konfiguracja tutaj */
+@theme {
+  --color-primary: #3b82f6;
+  /* inne customizacje */
+}
