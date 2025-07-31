@@ -216,3 +216,20 @@ curl -X POST https://api.render.com/deploy/srv-xxxxx
 ```
 
 🎉 **Gotowe!** Twoja strona jest teraz w pełni zautomatyzowana!
+
+
+
+TU INNA HALUCYNACJA:
+
+- Build Command: npm run build:seo
+- Static Site Root Directory: dist
+
+Konfiguracja serwera (np. Render):
+
+- Build Command: npm run build:seo
+- Static Site Root Directory: dist
+
+Redirects dla clean URLs - dodaj _redirects w public:
+
+/terapeuta/*  /terapeuta/:splat.html  200
+WYNIK: Botem Google zobaczy PEŁNY CONTENT = 🚀 TOP 3 w wynikach!
