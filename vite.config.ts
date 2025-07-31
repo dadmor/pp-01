@@ -1,5 +1,4 @@
 import { defineConfig } from "vite";
-
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
@@ -15,14 +14,8 @@ export default defineConfig({
   build: {
     outDir: "dist",
     sourcemap: false,
-    // Optymalizacja dla SEO
-    minify: "terser",
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },
+    // Use default esbuild minifier instead of terser
+    minify: "esbuild",
     rollupOptions: {
       output: {
         manualChunks: {

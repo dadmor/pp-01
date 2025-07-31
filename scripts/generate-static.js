@@ -1,3 +1,7 @@
+// TODO:
+// Główny problem: skrypt generuje pliki HTML ze ścieżką <script type="module" src="/src/main.tsx"></script>, 
+// która nie istnieje po zbudowaniu aplikacji - należy używać zbudowanego index.html z folderu dist jako szablonu.
+
 import { createClient } from "@supabase/supabase-js";
 import fs from "fs-extra";
 import path from "path";
