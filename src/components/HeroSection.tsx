@@ -14,23 +14,20 @@ export default function HeroSection({
   therapistName 
 }: HeroSectionProps) {
   return (
-    <section className="hero-section mt-20 pt-20 pb-16 px-4 sm:px-6 lg:px-8 min-h-[85vh] flex items-center relative overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-cream to-therapy-50 -z-10"></div>
-      
+    <section className="hero-section mt-20 pt-20 pb-16 px-4 sm:px-6 lg:px-8 min-h-[85vh] flex items-center relative overflow-hidden bg-gradient-to-br from-cream to-khaki-light">
       {/* Decorative circle */}
-      <div className="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 bg-therapy-100 rounded-full opacity-20 blur-3xl"></div>
+      <div className="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 bg-khaki/10 rounded-full blur-3xl"></div>
       
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="hero-text">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-charcoal mb-6">
               {title}
             </h1>
-            <p className="text-lg md:text-xl text-therapy-600 uppercase tracking-wider mb-8 font-normal">
+            <p className="text-lg md:text-xl text-sage uppercase tracking-wider mb-8 font-normal">
               {subtitle}
             </p>
-            <p className="text-lg text-gray-600 mb-10 leading-relaxed">
+            <p className="text-lg text-warm-gray mb-10 leading-relaxed">
               {description}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -47,9 +44,9 @@ export default function HeroSection({
             <img 
               src={imageUrl || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=450&fit=crop'} 
               alt={therapistName || 'Psychoterapeuta'}
-              className="w-full rounded-lg shadow-2xl"
+              className="w-full rounded-lg shadow-elegant"
             />
-            <div className="absolute top-5 left-5 -right-5 -bottom-5 bg-therapy-100 rounded-lg -z-10 opacity-50"></div>
+            <div className="absolute top-5 left-5 -right-5 -bottom-5 bg-khaki-light/50 rounded-lg -z-10"></div>
           </div>
         </div>
       </div>

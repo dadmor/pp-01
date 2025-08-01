@@ -33,10 +33,10 @@ export default function FeaturesSection({ features = defaultFeatures }: Features
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-charcoal mb-6">
             Czym jest terapia online?
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-warm-gray max-w-2xl mx-auto font-light">
             Profesjonalne wsparcie psychologiczne dostosowane do współczesnego stylu życia
           </p>
         </div>
@@ -45,17 +45,16 @@ export default function FeaturesSection({ features = defaultFeatures }: Features
           {features.map((feature, index) => (
             <div 
               key={index} 
-              className="feature-card bg-cream p-8 rounded-lg transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-xl relative overflow-hidden group"
+              className="feature-card bg-cream p-8 rounded-lg transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-elegant relative overflow-hidden group feature-border"
             >
-              <div className="absolute inset-0 w-1 bg-therapy-600 transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top"></div>
-              <div className="relative">
-                <div className="w-16 h-16 bg-therapy-100 rounded-full flex items-center justify-center mb-6 transition-all duration-300 group-hover:bg-therapy-600 text-therapy-600 group-hover:text-white">
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-khaki-light rounded-full flex items-center justify-center mb-6 transition-all duration-300 group-hover:bg-sage text-sage group-hover:text-white">
                   {feature.icon}
                 </div>
-                <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4">
+                <h3 className="text-2xl font-serif font-bold text-charcoal mb-4">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-warm-gray leading-relaxed font-light">
                   {feature.description}
                 </p>
               </div>

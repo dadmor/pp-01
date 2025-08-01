@@ -1,7 +1,92 @@
 @import "tailwindcss";
 
-/* Twoja konfiguracja tutaj */
 @theme {
-  --color-primary: #3b82f6;
-  /* inne customizacje */
+  /* Kolory z wzoru */
+  --color-khaki: #C4B5A0;
+  --color-khaki-light: #E8E2D5;
+  --color-khaki-dark: #9B8B7A;
+  
+  --color-sage: #87A96B;
+  --color-sage-light: #A4C089;
+  --color-sage-dark: #6B8956;
+  
+  --color-terracotta: #C65D3B;
+  --color-terracotta-light: #D47A5C;
+  --color-terracotta-dark: #A94A2C;
+  
+  --color-cream: #FAF7F2;
+  --color-charcoal: #2C2C2C;
+  --color-warm-gray: #6B6B6B;
+  
+  /* Fonty - systemowe, szybkie */
+  --font-family-serif: Georgia, 'Times New Roman', serif;
+  --font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  
+  /* Cienie */
+  --shadow-soft: 0 2px 10px rgba(0,0,0,0.05);
+  --shadow-medium: 0 10px 25px rgba(0,0,0,0.08);
+  --shadow-elegant: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  @apply transition-colors duration-300;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-cream;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-khaki rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-khaki-dark;
+}
+
+/* Button hover effects */
+.btn-primary {
+  @apply bg-sage text-white px-8 py-3 rounded-full font-medium tracking-wide
+         hover:bg-sage-dark hover:shadow-lg transform hover:-translate-y-0.5
+         transition-all duration-300;
+}
+
+.btn-secondary {
+  @apply bg-transparent text-charcoal px-8 py-3 rounded-full font-medium 
+         border border-khaki-dark tracking-wide
+         hover:bg-terracotta hover:text-white hover:border-terracotta
+         hover:shadow-lg transform hover:-translate-y-0.5
+         transition-all duration-300;
+}
+
+/* Card hover effects */
+.card-hover {
+  @apply hover:shadow-xl hover:-translate-y-1 transition-all duration-300;
+}
+
+/* Feature card left border effect */
+.feature-border {
+  @apply relative overflow-hidden;
+}
+
+.feature-border::before {
+  content: '';
+  @apply absolute top-0 left-0 w-1 h-0 bg-sage transition-all duration-300;
+}
+
+.feature-border:hover::before {
+  @apply h-full;
+}
+
+/* Process timeline */
+.timeline-dot {
+  @apply w-14 h-14 bg-terracotta text-white rounded-full flex items-center 
+         justify-center font-bold text-xl shadow-lg hover:scale-110 
+         transition-transform duration-300;
 }

@@ -13,7 +13,7 @@ export default function Footer({ therapistName, socialLinks }: FooterProps) {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className="bg-charcoal text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           {socialLinks && (
@@ -23,7 +23,7 @@ export default function Footer({ therapistName, socialLinks }: FooterProps) {
                   href={socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-therapy-600 transition-all duration-300 hover:-translate-y-1"
+                  className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage transition-all duration-300 hover:-translate-y-1"
                 >
                   <Linkedin className="w-5 h-5" />
                 </a>
@@ -33,7 +33,7 @@ export default function Footer({ therapistName, socialLinks }: FooterProps) {
                   href={socialLinks.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-therapy-600 transition-all duration-300 hover:-translate-y-1"
+                  className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage transition-all duration-300 hover:-translate-y-1"
                 >
                   <Instagram className="w-5 h-5" />
                 </a>
@@ -43,24 +43,24 @@ export default function Footer({ therapistName, socialLinks }: FooterProps) {
                   href={socialLinks.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-therapy-600 transition-all duration-300 hover:-translate-y-1"
+                  className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage transition-all duration-300 hover:-translate-y-1"
                 >
                   <Facebook className="w-5 h-5" />
                 </a>
               )}
               <a 
                 href="#contact"
-                className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-therapy-600 transition-all duration-300 hover:-translate-y-1"
+                className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage transition-all duration-300 hover:-translate-y-1"
               >
                 <Mail className="w-5 h-5" />
               </a>
             </div>
           )}
           
-          <p className="text-gray-400 mb-2">
+          <p className="text-gray-400 mb-2 font-light">
             &copy; {currentYear} {therapistName || 'Profesjonalna Psychoterapia'} - Wszelkie prawa zastrzeżone
           </p>
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-500 text-sm font-light">
             <a href="/polityka-prywatnosci" className="hover:text-white transition-colors">
               Polityka prywatności
             </a>
