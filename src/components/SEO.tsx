@@ -9,6 +9,7 @@ interface SEOProps {
   ogDescription?: string;
   ogImage?: string;
   ogUrl?: string;
+  preloadImage?: string; // Dodaj nową opcję
 }
 
 export default function SEO({ 
@@ -18,7 +19,8 @@ export default function SEO({
   ogTitle,
   ogDescription,
   ogImage,
-  ogUrl
+  ogUrl,
+  preloadImage // Dodaj parametr
 }: SEOProps) {
   useEffect(() => {
     // Update title
@@ -53,8 +55,21 @@ export default function SEO({
       link.href = canonical;
     }
     
-    // Add preload for og:image if it exists
-    if (ogImage) {
+    // Add preload for hero/LCP image
+    if (preloadImage) {
+      const existingPreload = document.querySelector(`link[rel="preload"][href="${preloadImage}"]`);
+      if (!existingPreload) {
+        const preloadLink = document.createElement('link');
+        preloadLink.rel = 'preload';
+        preloadLink.as = 'image';
+        preloadLink.href = preloadImage;
+        preloadLink.setAttribute('fetchpriority', 'high');
+        document.head.appendChild(preloadLink);
+      }
+    }
+    
+    // Add preload for og:image if different from preloadImage
+    if (ogImage && ogImage !== preloadImage) {
       const existingPreload = document.querySelector(`link[rel="preload"][href="${ogImage}"]`);
       if (!existingPreload) {
         const preloadLink = document.createElement('link');
@@ -75,8 +90,14 @@ export default function SEO({
     
     // Cleanup function
     return () => {
-      // Remove preload link when component unmounts
-      if (ogImage) {
+      // Remove preload links when component unmounts
+      if (preloadImage) {
+        const preloadLink = document.querySelector(`link[rel="preload"][href="${preloadImage}"]`);
+        if (preloadLink) {
+          preloadLink.remove();
+        }
+      }
+      if (ogImage && ogImage !== preloadImage) {
         const preloadLink = document.querySelector(`link[rel="preload"][href="${ogImage}"]`);
         if (preloadLink) {
           preloadLink.remove();
@@ -84,7 +105,7 @@ export default function SEO({
       }
     };
     
-  }, [title, description, canonical, ogTitle, ogDescription, ogImage, ogUrl]);
+  }, [title, description, canonical, ogTitle, ogDescription, ogImage, ogUrl, preloadImage]);
   
   return null;
 }

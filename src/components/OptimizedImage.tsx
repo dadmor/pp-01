@@ -44,7 +44,7 @@ export default function OptimizedImage({
         { rootMargin: "50px" }
       );
 
-      const element = document.querySelector(`[data-src="${src}"]`);
+      const element = document.querySelector(`img[data-src="${src}"]`);
       if (element) {
         observer.observe(element);
       }
@@ -66,19 +66,18 @@ export default function OptimizedImage({
 
   return (
     <img
-      data-src={src}
+      {...{ 'data-src': src }} // Używamy spread operatora dla data attributes
       src={imageSrc}
       alt={alt}
       width={width}
       height={height}
-      className={`${className} ${
-        !isLoaded ? "blur-sm" : ""
-      } transition-all duration-300`}
+      className={`${className} ${!isLoaded ? "blur-sm" : ""} transition-all duration-300`}
       loading={priority ? "eager" : "lazy"}
       decoding="async"
       style={style}
       sizes={sizes}
       srcSet={srcSet}
+      {...(priority ? { fetchPriority: "high" } : {})} // fetchPriority zamiast fetchpriority
     />
   );
 }

@@ -8,7 +8,7 @@ import { useTherapists } from '../hooks/useTherapists';
 import { getTherapistBySlug } from '../lib/supabase';
 import { MapPin, Loader2 } from 'lucide-react';
 import { buttonVariants, headingVariants, textVariants } from '@/lib/tailwindVariants';
-
+import { Therapist } from '../types'; // Dodaj import typu
 
 export default function TherapistListPage() {
   const { data: therapists = [], isLoading, error } = useTherapists();
@@ -82,7 +82,7 @@ export default function TherapistListPage() {
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {therapists.map((therapist) => (
+              {therapists.map((therapist: Therapist) => ( // Dodaj typ Therapist
                 <Link
                   key={therapist.id}
                   to={`/terapeuta/${therapist.slug}`}

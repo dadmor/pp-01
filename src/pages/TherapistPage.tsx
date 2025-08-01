@@ -1,3 +1,4 @@
+// src/pages/TherapistPage.tsx
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import SEO from '../components/SEO';
@@ -13,7 +14,6 @@ import Footer from '../components/Footer';
 import { getTherapistBySlug } from '../lib/supabase';
 import { getPreRenderedTherapist } from '../lib/window-data';
 import { Loader2 } from 'lucide-react';
-
 
 export default function TherapistPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -32,7 +32,7 @@ export default function TherapistPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="w-12 h-12 text-therapy-600 mx-auto" />
+          <Loader2 className="w-12 h-12 text-therapy-600 mx-auto animate-spin" />
           <p className="mt-4 text-gray-600">Ładowanie...</p>
         </div>
       </div>
@@ -64,6 +64,7 @@ export default function TherapistPage() {
         ogUrl={`https://profesjonalna-psychoterapia.pl/terapeuta/${therapist.slug}`}
         ogImage={therapist.image_url}
         canonical={`https://profesjonalna-psychoterapia.pl/terapeuta/${therapist.slug}`}
+        preloadImage={therapist.image_url || 'https://psychocare.pl/wp-content/uploads/2019/09/DSC_0750b-1-scaled-e1614098812392.jpg'}
       />
       
       <SchemaOrg therapist={therapist} />

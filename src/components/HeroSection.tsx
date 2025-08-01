@@ -2,7 +2,6 @@
 import { buttonVariants, headingVariants, textVariants } from '@/lib/tailwindVariants';
 import OptimizedImage from './OptimizedImage';
 
-
 interface HeroSectionProps {
   title: string;
   subtitle: string;
