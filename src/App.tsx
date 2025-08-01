@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import LoadingSpinner from './components/LoadingSpinner';
 
-
 // Lazy load pages
 const HomePage = lazy(() => 
   import(/* webpackChunkName: "home" */ './pages/HomePage')
@@ -21,6 +20,8 @@ const queryClient = new QueryClient({
     queries: {
       staleTime: 1000 * 60 * 5, // 5 minutes
       gcTime: 1000 * 60 * 10, // 10 minutes
+      refetchOnWindowFocus: false, // Wyłączamy odświeżanie przy fokusie
+      refetchOnReconnect: false, // Wyłączamy odświeżanie przy reconnect
     },
   },
 });

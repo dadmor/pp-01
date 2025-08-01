@@ -1,30 +1,39 @@
-import { createClient } from '@supabase/supabase-js';
-
+// src/lib/supabase.ts
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
-// Helper do pobierania terapeutów
+// Używamy zwykłego fetch zamiast klienta Supabase, żeby uniknąć WebLocks
 export const getTherapists = async () => {
-  const { data, error } = await supabase
-    .from('therapists')
-    .select('*')
-    .eq('is_active', true)
-    .order('name');
+  const response = await fetch(
+    `${supabaseUrl}/rest/v1/therapists?is_active=eq.true&order=name`,
+    {
+      headers: {
+        'apikey': supabaseAnonKey,
+        'Authorization': `Bearer ${supabaseAnonKey}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation'
+      }
+    }
+  );
   
-  if (error) throw error;
-  return data;
+  if (!response.ok) throw new Error('Failed to fetch therapists');
+  return response.json();
 };
 
 export const getTherapistBySlug = async (slug: string) => {
-  const { data, error } = await supabase
-    .from('therapists')
-    .select('*')
-    .eq('slug', slug)
-    .eq('is_active', true)
-    .single();
+  const response = await fetch(
+    `${supabaseUrl}/rest/v1/therapists?slug=eq.${slug}&is_active=eq.true&limit=1`,
+    {
+      headers: {
+        'apikey': supabaseAnonKey,
+        'Authorization': `Bearer ${supabaseAnonKey}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation'
+      }
+    }
+  );
   
-  if (error) throw error;
-  return data;
+  if (!response.ok) throw new Error('Failed to fetch therapist');
+  const data = await response.json();
+  return data[0];
 };
