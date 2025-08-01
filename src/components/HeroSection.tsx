@@ -1,3 +1,8 @@
+// src/components/HeroSection.tsx
+import { buttonVariants, headingVariants, textVariants } from '@/lib/tailwindVariants';
+import OptimizedImage from './OptimizedImage';
+
+
 interface HeroSectionProps {
   title: string;
   subtitle: string;
@@ -21,20 +26,20 @@ export default function HeroSection({
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="hero-text">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-charcoal mb-6">
+            <h1 className={headingVariants({ size: 'h1' })}>
               {title}
             </h1>
-            <p className="text-lg md:text-xl text-sage uppercase tracking-wider mb-8 font-normal">
+            <p className="text-lg md:text-xl text-sage-dark uppercase tracking-wider mb-8 font-normal">
               {subtitle}
             </p>
-            <p className="text-lg text-warm-gray mb-10 leading-relaxed">
+            <p className={textVariants({ size: 'lg', color: 'gray' }) + ' mb-10'}>
               {description}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#book" className="btn-primary text-center">
+              <a href="#book" className={buttonVariants({ variant: 'primary', size: 'base' }) + ' text-center'}>
                 Rozpocznij terapię
               </a>
-              <a href="#consultation" className="btn-secondary text-center">
+              <a href="#consultation" className={buttonVariants({ variant: 'secondary', size: 'base' }) + ' text-center'}>
                 Bezpłatna konsultacja
               </a>
             </div>
@@ -42,11 +47,14 @@ export default function HeroSection({
           
           <div className="hero-image relative">
             <div className="relative aspect-[4/3] lg:aspect-[3/2] w-full">
-              <img 
+              <OptimizedImage 
                 src={imageUrl || 'https://psychocare.pl/wp-content/uploads/2019/09/DSC_0750b-1-scaled-e1614098812392.jpg'} 
                 alt={therapistName || 'Psychoterapeuta'}
                 className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-elegant"
-                loading="eager"
+                width={600}
+                height={400}
+                priority={true}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
               />
             </div>
             <div className="absolute top-5 left-5 -right-5 -bottom-5 bg-khaki-light/50 rounded-lg -z-10"></div>

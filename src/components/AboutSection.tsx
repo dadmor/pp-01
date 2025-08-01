@@ -1,3 +1,7 @@
+// src/components/AboutSection.tsx
+import { memo } from 'react';
+import OptimizedImage from './OptimizedImage';
+
 interface AboutSectionProps {
   name: string;
   description: string;
@@ -5,12 +9,12 @@ interface AboutSectionProps {
   credentials?: string[];
 }
 
-export default function AboutSection({ 
+const AboutSection = memo(({ 
   name, 
   description, 
   imageUrl,
   credentials = [] 
-}: AboutSectionProps) {
+}: AboutSectionProps) => {
   // Split description into paragraphs
   const paragraphs = description.split('\n').filter(p => p.trim());
   
@@ -20,11 +24,13 @@ export default function AboutSection({
         <div className="grid lg:grid-cols-3 gap-12 items-center">
           <div className="lg:col-span-1 relative">
             <div className="relative aspect-[4/5] w-full">
-              <img 
+              <OptimizedImage 
                 src={imageUrl || 'https://psychocare.pl/wp-content/uploads/2019/09/DSC_0750b-1-scaled-e1614098812392.jpg'} 
                 alt={name}
                 className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-elegant"
-                loading="lazy"
+                width={400}
+                height={500}
+                sizes="(max-width: 1024px) 100vw, 400px"
               />
             </div>
             <div className="absolute -top-4 -left-4 right-4 bottom-4 bg-khaki-light rounded-lg -z-10"></div>
@@ -57,4 +63,8 @@ export default function AboutSection({
       </div>
     </section>
   );
-}
+});
+
+AboutSection.displayName = 'AboutSection';
+
+export default AboutSection;

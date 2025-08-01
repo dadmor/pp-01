@@ -1,19 +1,30 @@
+// src/components/Navigation.tsx
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { Menu } from 'lucide-react';
+import { useState, useEffect, memo } from 'react';
+import IconMenu from '~icons/lucide/menu';
 
 interface NavigationProps {
   therapistName?: string;
 }
 
-export default function Navigation({ therapistName }: NavigationProps) {
+const Navigation = memo(({ therapistName }: NavigationProps) => {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 50);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -41,11 +52,34 @@ export default function Navigation({ therapistName }: NavigationProps) {
           </div>
 
           {/* Mobile menu button */}
-          <button className="md:hidden p-2">
-            <Menu className="w-6 h-6" />
+          <button 
+            className="md:hidden p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <IconMenu className="w-6 h-6" />
           </button>
         </div>
+        
+        {/* Mobile menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden py-4 border-t border-gray-200">
+            <div className="flex flex-col space-y-4">
+              <a href="#about" className="nav-link block px-4">O mnie</a>
+              <a href="#specializations" className="nav-link block px-4">Specjalizacje</a>
+              <a href="#process" className="nav-link block px-4">Jak pracuję</a>
+              <a href="#contact" className="nav-link block px-4">Kontakt</a>
+              <a href="#book" className="btn-primary block text-center mx-4">
+                Umów wizytę
+              </a>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );
-}
+});
+
+Navigation.displayName = 'Navigation';
+
+export default Navigation;

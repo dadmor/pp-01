@@ -1,3 +1,8 @@
+// src/components/ProcessSection.tsx
+import { headingVariants, sectionVariants, textVariants } from '@/lib/tailwindVariants';
+import { memo } from 'react';
+
+
 interface ProcessStep {
   number: number;
   title: string;
@@ -31,15 +36,19 @@ interface ProcessSectionProps {
   steps?: ProcessStep[];
 }
 
-export default function ProcessSection({ steps = defaultSteps }: ProcessSectionProps) {
+const ProcessSection = memo(({ steps = defaultSteps }: ProcessSectionProps) => {
   return (
-    <section id="process" className="py-24 bg-cream">
+    <section id="process" className={sectionVariants({ background: 'cream' })}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-charcoal mb-6">
+          <h2 className={headingVariants({ size: 'h2', align: 'center' })}>
             Jak wygląda proces terapii?
           </h2>
-          <p className="text-lg text-warm-gray max-w-2xl mx-auto font-light">
+          <p className={textVariants({ 
+            size: 'lg', 
+            color: 'gray', 
+            align: 'center' 
+          }) + ' max-w-2xl mx-auto'}>
             Każda droga jest inna, ale oto typowe etapy naszej wspólnej pracy
           </p>
         </div>
@@ -66,10 +75,10 @@ export default function ProcessSection({ steps = defaultSteps }: ProcessSectionP
                 
                 <div className="flex-1 mt-6 lg:mt-0">
                   <div className="bg-white p-8 rounded-lg shadow-soft hover:shadow-medium transition-shadow duration-300">
-                    <h4 className="text-2xl font-serif font-bold text-charcoal mb-3">
+                    <h3 className={headingVariants({ size: 'h4' })}>
                       {step.title}
-                    </h4>
-                    <p className="text-warm-gray leading-relaxed font-light">
+                    </h3>
+                    <p className={textVariants({ color: 'gray' })}>
                       {step.description}
                     </p>
                   </div>
@@ -81,4 +90,8 @@ export default function ProcessSection({ steps = defaultSteps }: ProcessSectionP
       </div>
     </section>
   );
-}
+});
+
+ProcessSection.displayName = 'ProcessSection';
+
+export default ProcessSection;

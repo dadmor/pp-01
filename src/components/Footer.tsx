@@ -1,4 +1,11 @@
-import { Linkedin, Instagram, Facebook, Mail } from 'lucide-react';
+// src/components/Footer.tsx
+import { memo } from 'react';
+
+import IconLinkedin from '~icons/lucide/linkedin';
+import IconInstagram from '~icons/lucide/instagram';
+import IconFacebook from '~icons/lucide/facebook';
+import IconMail from '~icons/lucide/mail';
+import { sectionVariants, textVariants } from '@/lib/tailwindVariants';
 
 interface FooterProps {
   therapistName?: string;
@@ -9,11 +16,11 @@ interface FooterProps {
   };
 }
 
-export default function Footer({ therapistName, socialLinks }: FooterProps) {
+const Footer = memo(({ therapistName, socialLinks }: FooterProps) => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-charcoal text-white py-12">
+    <footer className={sectionVariants({ background: 'dark' }) + ' py-12'}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           {socialLinks && (
@@ -23,9 +30,10 @@ export default function Footer({ therapistName, socialLinks }: FooterProps) {
                   href={socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage transition-all duration-300 hover:-translate-y-1"
+                  className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-sage transition-all duration-300 hover:-translate-y-1"
+                  aria-label="LinkedIn"
                 >
-                  <Linkedin className="w-5 h-5" />
+                  <IconLinkedin className="w-5 h-5" />
                 </a>
               )}
               {socialLinks.instagram && (
@@ -33,9 +41,10 @@ export default function Footer({ therapistName, socialLinks }: FooterProps) {
                   href={socialLinks.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage transition-all duration-300 hover:-translate-y-1"
+                  className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-sage transition-all duration-300 hover:-translate-y-1"
+                  aria-label="Instagram"
                 >
-                  <Instagram className="w-5 h-5" />
+                  <IconInstagram className="w-5 h-5" />
                 </a>
               )}
               {socialLinks.facebook && (
@@ -43,29 +52,37 @@ export default function Footer({ therapistName, socialLinks }: FooterProps) {
                   href={socialLinks.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage transition-all duration-300 hover:-translate-y-1"
+                  className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-sage transition-all duration-300 hover:-translate-y-1"
+                  aria-label="Facebook"
                 >
-                  <Facebook className="w-5 h-5" />
+                  <IconFacebook className="w-5 h-5" />
                 </a>
               )}
               <a 
                 href="#contact"
-                className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-sage transition-all duration-300 hover:-translate-y-1"
+                className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-sage transition-all duration-300 hover:-translate-y-1"
+                aria-label="Email"
               >
-                <Mail className="w-5 h-5" />
+                <IconMail className="w-5 h-5" />
               </a>
             </div>
           )}
           
-          <p className="text-gray-400 mb-2 font-light">
+          <p className={textVariants({ color: 'white' }) + ' mb-2 opacity-80'}>
             &copy; {currentYear} {therapistName || 'Profesjonalna Psychoterapia'} - Wszelkie prawa zastrzeżone
           </p>
-          <p className="text-gray-500 text-sm font-light">
-            <a href="/polityka-prywatnosci" className="hover:text-white transition-colors">
+          <p className="text-sm">
+            <a 
+              href="/polityka-prywatnosci" 
+              className="text-gray-300 hover:text-white transition-colors underline decoration-dotted underline-offset-4"
+            >
               Polityka prywatności
             </a>
-            {' | '}
-            <a href="/regulamin" className="hover:text-white transition-colors">
+            <span className="text-gray-400 mx-2">|</span>
+            <a 
+              href="/regulamin" 
+              className="text-gray-300 hover:text-white transition-colors underline decoration-dotted underline-offset-4"
+            >
               Regulamin
             </a>
           </p>
@@ -73,4 +90,8 @@ export default function Footer({ therapistName, socialLinks }: FooterProps) {
       </div>
     </footer>
   );
-}
+});
+
+Footer.displayName = 'Footer';
+
+export default Footer;

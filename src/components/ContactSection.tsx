@@ -1,4 +1,10 @@
-import { Phone, Mail, Calendar, CalendarCheck } from 'lucide-react';
+// src/components/ContactSection.tsx
+import { memo } from 'react';
+import IconPhone from '~icons/lucide/phone';
+import IconMail from '~icons/lucide/mail';
+import IconCalendar from '~icons/lucide/calendar';
+import IconCalendarCheck from '~icons/lucide/calendar-check';
+import { buttonVariants, cardVariants, headingVariants, textVariants } from '@/lib/tailwindVariants';
 
 interface ContactInfo {
   phone?: string;
@@ -13,16 +19,16 @@ interface ContactSectionProps {
   contact?: ContactInfo | null;
 }
 
-export default function ContactSection({ contact }: ContactSectionProps) {
+const ContactSection = memo(({ contact }: ContactSectionProps) => {
   // Zabezpieczenie przed brakiem danych kontaktowych
   if (!contact) {
     return (
       <section id="contact" className="py-24 bg-gradient-to-br from-khaki-light to-cream">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-charcoal mb-6">
+          <h2 className={headingVariants({ size: 'h2', align: 'center' })}>
             Zróbmy pierwszy krok
           </h2>
-          <p className="text-lg text-warm-gray font-light">
+          <p className={textVariants({ size: 'lg', color: 'gray' })}>
             Informacje kontaktowe są obecnie aktualizowane.
           </p>
         </div>
@@ -34,44 +40,48 @@ export default function ContactSection({ contact }: ContactSectionProps) {
     <section id="contact" className="py-24 bg-gradient-to-br from-khaki-light to-cream">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-charcoal mb-6">
+          <h2 className={headingVariants({ size: 'h2', align: 'center' })}>
             Zróbmy pierwszy krok
           </h2>
-          <p className="text-lg text-warm-gray max-w-2xl mx-auto font-light">
+          <p className={textVariants({ 
+            size: 'lg', 
+            color: 'gray', 
+            align: 'center' 
+          }) + ' max-w-2xl mx-auto'}>
             Zdecydowanie się na terapię wymaga odwagi. Jestem tu, aby Cię wesprzeć
           </p>
         </div>
         
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           {contact?.phone && (
-            <div className="contact-item bg-white p-8 rounded-lg shadow-soft hover:shadow-medium transition-all duration-300 hover:-translate-y-1 text-center">
-              <Phone className="w-8 h-8 text-sage mb-4 mx-auto" />
-              <h4 className="font-serif text-xl font-bold text-charcoal mb-2">
+            <div className={cardVariants({ variant: 'elevated' }) + ' text-center'}>
+              <IconPhone className="w-8 h-8 text-sage-dark mb-4 mx-auto" />
+              <h3 className={headingVariants({ size: 'h5' }) + ' text-center'}>
                 Telefon
-              </h4>
-              <p className="text-warm-gray font-light">
-                {contact?.phone}
+              </h3>
+              <p className={textVariants({ color: 'gray' })}>
+                {contact.phone}
               </p>
             </div>
           )}
           
-          <div className="contact-item bg-white p-8 rounded-lg shadow-soft hover:shadow-medium transition-all duration-300 hover:-translate-y-1 text-center">
-            <Mail className="w-8 h-8 text-sage mb-4 mx-auto" />
-            <h4 className="font-serif text-xl font-bold text-charcoal mb-2">
+          <div className={cardVariants({ variant: 'elevated' }) + ' text-center'}>
+            <IconMail className="w-8 h-8 text-sage-dark mb-4 mx-auto" />
+            <h3 className={headingVariants({ size: 'h5' }) + ' text-center'}>
               Email
-            </h4>
-            <p className="text-warm-gray font-light">
-              {contact?.email || 'kontakt@profesjonalna-psychoterapia.pl'}
+            </h3>
+            <p className={textVariants({ color: 'gray' })}>
+              {contact.email || 'kontakt@profesjonalna-psychoterapia.pl'}
             </p>
           </div>
           
           {contact?.availability && (
-            <div className="contact-item bg-white p-8 rounded-lg shadow-soft hover:shadow-medium transition-all duration-300 hover:-translate-y-1 text-center">
-              <Calendar className="w-8 h-8 text-sage mb-4 mx-auto" />
-              <h4 className="font-serif text-xl font-bold text-charcoal mb-2">
+            <div className={cardVariants({ variant: 'elevated' }) + ' text-center'}>
+              <IconCalendar className="w-8 h-8 text-sage-dark mb-4 mx-auto" />
+              <h3 className={headingVariants({ size: 'h5' }) + ' text-center'}>
                 Dostępność
-              </h4>
-              <p className="text-warm-gray font-light">
+              </h3>
+              <p className={textVariants({ color: 'gray' })}>
                 {contact.availability.days?.join(', ')}<br />
                 {contact.availability.hours}
               </p>
@@ -82,13 +92,17 @@ export default function ContactSection({ contact }: ContactSectionProps) {
         <div className="text-center">
           <a 
             href="#book" 
-            className="inline-flex items-center btn-primary text-lg px-8 py-4"
+            className={buttonVariants({ size: 'lg' })}
           >
-            <CalendarCheck className="w-5 h-5 mr-3" />
+            <IconCalendarCheck className="w-5 h-5 mr-3" />
             Umów pierwszą wizytę
           </a>
         </div>
       </div>
     </section>
   );
-}
+});
+
+ContactSection.displayName = 'ContactSection';
+
+export default ContactSection;

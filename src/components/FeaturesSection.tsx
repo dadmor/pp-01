@@ -1,4 +1,8 @@
-import { Home, Lock, Clock } from 'lucide-react';
+// src/components/FeaturesSection.tsx
+import { memo } from 'react';
+import IconHome from '~icons/lucide/home';
+import IconLock from '~icons/lucide/lock';
+import IconClock from '~icons/lucide/clock';
 
 interface Feature {
   icon: React.ReactNode;
@@ -8,17 +12,17 @@ interface Feature {
 
 const defaultFeatures: Feature[] = [
   {
-    icon: <Home className="w-8 h-8" />,
+    icon: <IconHome className="w-8 h-8" />,
     title: 'Komfort i intymność',
     description: 'Sesje odbywają się w Twoim bezpiecznym miejscu. Możesz otworzyć się w znanym otoczeniu, co często ułatwia proces terapeutyczny.'
   },
   {
-    icon: <Lock className="w-8 h-8" />,
+    icon: <IconLock className="w-8 h-8" />,
     title: 'Pełna dyskrecja',
     description: 'Wszystkie rozmowy są poufne i odbywają się przez szyfrowane połączenie. Twoje dane i historia terapii są bezpieczne.'
   },
   {
-    icon: <Clock className="w-8 h-8" />,
+    icon: <IconClock className="w-8 h-8" />,
     title: 'Elastyczność',
     description: 'Dopasowujemy terminy do Twojego rytmu życia. Możliwość spotkań wieczornych i weekendowych.'
   }
@@ -28,7 +32,7 @@ interface FeaturesSectionProps {
   features?: Feature[];
 }
 
-export default function FeaturesSection({ features = defaultFeatures }: FeaturesSectionProps) {
+const FeaturesSection = memo(({ features = defaultFeatures }: FeaturesSectionProps) => {
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -64,4 +68,8 @@ export default function FeaturesSection({ features = defaultFeatures }: Features
       </div>
     </section>
   );
-}
+});
+
+FeaturesSection.displayName = 'FeaturesSection';
+
+export default FeaturesSection;

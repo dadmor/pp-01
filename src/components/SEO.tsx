@@ -1,3 +1,4 @@
+// src/components/SEO.tsx
 import { useEffect } from 'react';
 
 interface SEOProps {
@@ -52,6 +53,18 @@ export default function SEO({
       link.href = canonical;
     }
     
+    // Add preload for og:image if it exists
+    if (ogImage) {
+      const existingPreload = document.querySelector(`link[rel="preload"][href="${ogImage}"]`);
+      if (!existingPreload) {
+        const preloadLink = document.createElement('link');
+        preloadLink.rel = 'preload';
+        preloadLink.as = 'image';
+        preloadLink.href = ogImage;
+        document.head.appendChild(preloadLink);
+      }
+    }
+    
     // Update meta tags
     if (description) updateMetaTag('description', description);
     if (ogTitle) updateMetaTag('og:title', ogTitle);
@@ -59,6 +72,17 @@ export default function SEO({
     if (ogImage) updateMetaTag('og:image', ogImage);
     if (ogUrl) updateMetaTag('og:url', ogUrl);
     updateMetaTag('og:type', 'website');
+    
+    // Cleanup function
+    return () => {
+      // Remove preload link when component unmounts
+      if (ogImage) {
+        const preloadLink = document.querySelector(`link[rel="preload"][href="${ogImage}"]`);
+        if (preloadLink) {
+          preloadLink.remove();
+        }
+      }
+    };
     
   }, [title, description, canonical, ogTitle, ogDescription, ogImage, ogUrl]);
   
