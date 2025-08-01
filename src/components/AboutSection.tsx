@@ -19,11 +19,14 @@ export default function AboutSection({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-3 gap-12 items-center">
           <div className="lg:col-span-1 relative">
-            <img 
-              src={imageUrl || 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=500&fit=crop'} 
-              alt={name}
-              className="w-full rounded-lg shadow-elegant"
-            />
+            <div className="relative aspect-[4/5] w-full">
+              <img 
+                src={imageUrl || 'https://psychocare.pl/wp-content/uploads/2019/09/DSC_0750b-1-scaled-e1614098812392.jpg'} 
+                alt={name}
+                className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-elegant"
+                loading="lazy"
+              />
+            </div>
             <div className="absolute -top-4 -left-4 right-4 bottom-4 bg-khaki-light rounded-lg -z-10"></div>
           </div>
           

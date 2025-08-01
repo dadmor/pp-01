@@ -41,11 +41,14 @@ export default function HeroSection({
           </div>
           
           <div className="hero-image relative">
-            <img 
-              src={imageUrl || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=450&fit=crop'} 
-              alt={therapistName || 'Psychoterapeuta'}
-              className="w-full rounded-lg shadow-elegant"
-            />
+            <div className="relative aspect-[4/3] lg:aspect-[3/2] w-full">
+              <img 
+                src={imageUrl || 'https://psychocare.pl/wp-content/uploads/2019/09/DSC_0750b-1-scaled-e1614098812392.jpg'} 
+                alt={therapistName || 'Psychoterapeuta'}
+                className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-elegant"
+                loading="eager"
+              />
+            </div>
             <div className="absolute top-5 left-5 -right-5 -bottom-5 bg-khaki-light/50 rounded-lg -z-10"></div>
           </div>
         </div>
